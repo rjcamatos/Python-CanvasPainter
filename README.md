@@ -13,13 +13,17 @@ CanvasPainter(columns,rows,bits=16,window=None,endian=None)
 
 setWindow(startX,endX,startY,endY,copy=True)
 
-# -- Set the current color, if "isFillColor=True" sets the fill color
+# -- Set the current color (Color type: COLOR_LINE, COLOR_FILL, COLOR_TRANSPARENCY)
 
-setColor(R,G,B,isFillColor=False):
+setColor(R,G,B,colorType=CanvasPainter.COLOR_LINE):
 
-# -- Restore to last previous color, if "isFillColor=True" restore the fill color
+# -- Restore to last previous color (Color type: COLOR_LINE, COLOR_FILL, COLOR_TRANSPARENCY)
 
-restoreColor(isFillColor=False):
+restoreColor(colorType=CanvasPainter.COLOR_LINE):
+
+# -- Clear current color (Color type: COLOR_LINE, COLOR_FILL, COLOR_TRANSPARENCY)
+
+clearColor(colorType=CanvasPainter.COLOR_FILL):
 
 # -- Set current border thikness
 

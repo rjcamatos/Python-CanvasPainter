@@ -12,7 +12,7 @@ def img800x600():
 
     data.setThikness(3)
 
-    data.setColor(0,0,0,False)
+    data.setColor(0xCC,0xCC,0xCC,CanvasPainter.COLOR_FILL)
     data.setWindow(0,800,0,600,False)
 
     data.drawLineH(30,10,-100)
@@ -27,23 +27,23 @@ def img800x600():
 
     data.setWindow(0,500,0,500)
     data.setColor(255,255,255)
-    data.setColor(0,0,0,True)
+    data.setColor(0,0,0,CanvasPainter.COLOR_FILL)
     data.drawCircle(250,250,100,True)
     data.restoreColor(True)
 
     data.setColor(0,0,255)
-    data.setColor(255,0,0,True)
+    data.setColor(255,0,0,CanvasPainter.COLOR_FILL)
     data.drawSquare(40,10,50,True)
 
     data.setColor(255,0,255,True)
     data.setColor(200,255,255)
     data.drawRectangle(400,400,-100,-100,True)
-    data.restoreColor(True)
+    data.restoreColor(CanvasPainter.COLOR_FILL)
 
-    data.setColor(255,0,0,True)
+    data.setColor(255,0,0,CanvasPainter.COLOR_FILL)
     data.drawSquare(200,200,-50,True)
 
-    data.setColor(255,0,0,True)
+    data.setColor(255,0,0,CanvasPainter.COLOR_FILL)
     data.drawSquare(200,200,-50,True)
 
     data.setColor(0,0,255)

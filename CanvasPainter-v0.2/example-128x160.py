@@ -16,11 +16,11 @@ def img128x160():
 
     data.setThikness(1)
 
-    data.setColor(0,255,0,True)
+    data.setColor(0,255,0,CanvasPainter.COLOR_FILL)
     data.setColor(255,255,255)
     data.drawCircle(100,100,25,True)
 
-    data.setColor(255,0,0,True)
+    data.setColor(255,0,0,CanvasPainter.COLOR_FILL)
     data.setColor(255,255,0)
     data.drawSquare(60,50,-40,True)
 
@@ -36,21 +36,22 @@ def img128x160():
     data.drawLineV(40,60,100)
 
     data.setThikness(0)
-    data.setColor(255,0,255,True)
+    data.setColor(255,0,255,CanvasPainter.COLOR_FILL)
     data.setColor(200,255,255)
     data.setRotation(30,64,80)
     data.drawRectangle(64-20,80-25,40,50,True)
     data.setRotation()
-    data.restoreColor(True)
+    data.restoreColor(CanvasPainter.COLOR_FILL)
     
     data.flush()
 
     data.setWindow(10,50,10,50,True)
-    data.loadImage(0,0,'./images/picture.bmp')
+    data.setColor(0,255,0,CanvasPainter.COLOR_FILL)
+    data.setColor(255,255,255,CanvasPainter.COLOR_TRANSPARENCY)
+    data.loadImage(0,0,'./images/picture16bits.bmp')
     data.flush()
 
     data.setColor(255,255,0)
-    data.setColor(0,255,0,True)
     data.setWindow(1,128,1,40)
     data.printChars(1,1,'Hello World !',9)
     data.flush()
