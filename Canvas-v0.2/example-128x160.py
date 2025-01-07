@@ -52,7 +52,7 @@ def img128x160():
     data.setColor(255,255,0)
     data.setColor(0,255,0,True)
     data.setWindow(1,128,1,40)
-    data.printChars(1,1,'Hello World !')
+    data.printChars(1,1,'Hello World !',9)
     data.flush()
 
     data.saveBitmap('output-128x160.bmp')
