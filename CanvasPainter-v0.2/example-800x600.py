@@ -1,5 +1,5 @@
 import time
-from Canvas import Canvas
+from CanvasPainter import CanvasPainter
 
 #from memory_profiler import profile #ADD @profile BEFORE FUNCTION NAME TO ANALYSE IT
 
@@ -8,7 +8,7 @@ def img800x600():
 
     start_time = time.time()
 
-    data = Canvas(800,600,32)
+    data = CanvasPainter(800,600,32)
 
     data.setThikness(3)
 
@@ -60,7 +60,7 @@ def img800x600():
     data.flush()
 
 
-    data.saveBitmap('output-800x600.bmp')
+    data.saveBitmap('./CanvasPainter-v0.2/output-800x600.bmp')
 
     end_time = time.time()
 

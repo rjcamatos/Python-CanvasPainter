@@ -38,7 +38,7 @@ class IOMem:
         self._seekYES += 1
         self._buffer.seek(pos)
 
-class Canvas:
+class CanvasPainter:
 
     def __init__(self,width,height,bits=32,io=IOMem):
         
@@ -279,7 +279,7 @@ class Canvas:
         self._charTableMatrix[0] = int(self._charTableMatrix[0])
         self._charTableMatrix[1] = int(self._charTableMatrix[1])
 
-        self._charTable = Canvas(300,75,self._bits)
+        self._charTable = CanvasPainter(300,75,self._bits)
 
         input_file.seek(14) #jump to dib header
         dib_header = struct.unpack_from('<I I I H H I I I I I I',input_file.read(40))
@@ -322,7 +322,7 @@ start_time = time.time()
 
 
 
-data = Canvas(800,600,24)
+data = CanvasPainter(800,600,24)
 
 data.setRGBColor(255,0,0)
 data.drawSquare(25,25,300,True)
@@ -356,14 +356,14 @@ data.drawCircle(160,200,50,False)
 #data.flipHorizontal()
 #data.flipVertical()
 
-data.loadFont('./Canvas-v0.1/font2bitmap24bits-20X5.bmp')
+data.loadFont('./CanvasPainter-v0.1/font2bitmap24bits-20X5.bmp')
 data.printChars(100,100,b'HEllo World')
 data.printChars(100,115,b'I`m Ricardo Matos')
 
-data.saveBitmap('./Canvas-v0.1/image800X600.bmp')
+data.saveBitmap('./CanvasPainter-v0.1/image800X600.bmp')
 
 
-data = Canvas(128,160,16) #FOR MY TFT SCREEN 160x128
+data = CanvasPainter(128,160,16) #FOR MY TFT SCREEN 160x128
 
 data.setRGBColor(0,255,0)
 data.drawSquare(25,25,50,True)
@@ -387,9 +387,9 @@ data.drawCircle(10,10,10)
 data.drawCircle(16,20,10,False)
 #data.flipHorizontal()
 #data.flipVertical()
-data.loadFont('./Canvas-v0.1/font2bitmap16bits-20X5.bmp',False)
+data.loadFont('./CanvasPainter-v0.1/font2bitmap16bits-20X5.bmp',False)
 
-data.saveBitmap('./Canvas-v0.1/image128X160.bmp')
+data.saveBitmap('./CanvasPainter-v0.1/image128X160.bmp')
 
 
 end_time = time.time()

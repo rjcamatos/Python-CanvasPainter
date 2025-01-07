@@ -1,5 +1,5 @@
 import time
-from Canvas import Canvas
+from CanvasPainter import CanvasPainter
 
 #from memory_profiler import profile #ADD @profile BEFORE FUNCTION NAME TO ANALYSE IT
 
@@ -8,7 +8,7 @@ def img128x160():
 
     start_time = time.time()
 
-    data = Canvas(128,160,16) #FOR MY TFT SCREEN 160x128
+    data = CanvasPainter(128,160,16) #FOR MY TFT SCREEN 160x128
 
     data.setColor(0,0,0,True)
     data.setWindow(0,128,0,160,False)
@@ -55,7 +55,7 @@ def img128x160():
     data.printChars(1,1,'Hello World !',9)
     data.flush()
 
-    data.saveBitmap('output-128x160.bmp')
+    data.saveBitmap('./CanvasPainter-v0.2/output-128x160.bmp')
 
 
     end_time = time.time()
