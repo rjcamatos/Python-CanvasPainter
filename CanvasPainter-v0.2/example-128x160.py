@@ -51,7 +51,7 @@ def img128x160():
     data.loadImage(0,0,'./images/picture16bits.bmp')
     data.flush()
 
-    data.setColor(255,255,0)
+    data.setColor(0,0,255)
     data.setWindow(1,128,1,40)
     data.printChars(1,1,'Hello World !',9)
     data.flush()
