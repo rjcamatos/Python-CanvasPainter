@@ -58,7 +58,6 @@ def img128x160():
 
     data.saveBitmap('./CanvasPainter-v0.2/output-128x160.bmp')
 
-
     end_time = time.time()
 
     print("TIME ", (end_time-start_time))

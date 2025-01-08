@@ -68,7 +68,7 @@ class CanvasPainter:
     COLOR_FILL = 1
     COLOR_TRANSPARENCY = 2
 
-    def __init__(self,columns,rows,bits=16,window=None,endian=None):
+    def __init__(self,columns,rows,bits=16,window=None):
 
         self._window = window
         if self._window == None: self._window = CanvasPainterWindow()
@@ -77,13 +77,6 @@ class CanvasPainter:
         self._window._bits = bits
         self._window._bytes = math.ceil(self._window._bits/8)
         self._window._buffer = None 
-
-        self._endian = endian
-        if self._endian == None:
-            if (1<<1) > 0:
-                self._endian = 'little'
-            else:
-                self._endian = 'big'
 
         self._flipV = -1
         self._flipH = 1
@@ -127,10 +120,9 @@ class CanvasPainter:
             color = int((R<<5)&0xE0 | (G<<2)&0X1C | (B>>5)).to_bytes(1)
 
         if self._window._bits == 16: #OK <-- NEED VERIFY
-            if isinstance(self._window, CanvasPainterWindow):
-                color = int( (R>>3)<<10 | (G>>3)<<5 | (B)>>3 ).to_bytes(2,self._endian)
-            else:
-                color = int( (R&0xF8)<<8 | (G&0xFC)<<3 | (B&0xF1)>>3 ).to_bytes(2,self._endian) #FOR ST7735
+            color = int( (R>>3)<<10 | (G>>3)<<5 | (B)>>3 ).to_bytes(2,'little')
+            if self._window.__class__.__name__ == 'ST7735':
+                color = int( (R&0xF8)<<8 | (G&0xFC)<<3 | (B&0xF1)>>3 ).to_bytes(2) #FOR ST7735
             
         if self._window._bits == 24: #OK
             color = int( B<<16 | G<<8 | R ).to_bytes(3)
@@ -433,19 +425,26 @@ class CanvasPainter:
             b'\x00\x00',  #ApplicationSpecific_2
             14+40        #PixelArrayOffset
         )
+
+        colorsInPallet = 0
+        colorsImportant = 0
+        if self._window._bits == 8:
+            colorsInPallet = 256
+            colorsImportant = 256
+
         #--DIB HEADER 40 bytes
         dib_header = struct.pack('<IIIHHIIIIII',
             40,                             #DibHeaderBytes
             self._window._columns,          #ImageWidth
             self._window._rows,             #ImageHeight
-            1,                              #ColorPlanes
+            0,                              #ColorPlanes
             self._window._bits,             #BitsPerPixel
-            0,                              #BiRGB
+            0,                              #BiRGB (biCompression)
             0,                       #RawBitmapSize
             self._window._columns,          #PrintResolutionH
             self._window._rows,             #PrintResolutionV
-            256,                              #NumberOfColorsInPallet
-            256                               #ImportantColors
+            colorsInPallet,                              #NumberOfColorsInPallet
+            colorsImportant                              #ImportantColors
         )
 
         #WRITE TO FILE

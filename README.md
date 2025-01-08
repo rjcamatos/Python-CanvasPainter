@@ -7,7 +7,7 @@ A  Python Virtual Canvas Painter with ability to save as Bitmap image.
 
 # -- Construct the main object, bits can be 8, 16, 24 or 32
 
-CanvasPainter(columns,rows,bits=16,window=None,endian=None)
+CanvasPainter(columns,rows,bits=16,window=None)
 
 # -- Set the the window area to be draw (Mandatory, at least once)
 
