@@ -307,7 +307,7 @@ class CanvasPainter:
                     x = int(R * math.cos(math.radians(angle)))
                     y = int(R * math.sin(math.radians(angle)))
                     self.setPixel(xPos+x,yPos+y)
-                    angle += inc
+                    angle += inc + (self._thikness/2)
             self._color = tmpColor
             self.restoreThikness()
 

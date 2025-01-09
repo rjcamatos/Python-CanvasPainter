@@ -10,7 +10,7 @@ def img800x600():
 
     data = CanvasPainter(800,600,24)
 
-    data.setThikness(3)
+    data.setThikness(0)
 
     data.setColor(0xCC,0xCC,0xCC,CanvasPainter.COLOR_FILL)
     data.setWindow(0,800,0,600,False)
