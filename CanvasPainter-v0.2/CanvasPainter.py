@@ -300,7 +300,7 @@ class CanvasPainter:
             self._color = self._fillColor
             for R in range(radius-self._thikness):
                 if R < 1: continue
-                len = ((2/360)*(endAngle-startAngle)) * math.pi * radius
+                len = ((2/360)*(endAngle-startAngle)) * math.pi * R
                 inc = (endAngle-startAngle)/(len*2.3) # 2.3 is pixel resolution
                 angle = startAngle
                 while angle < endAngle:
@@ -318,7 +318,7 @@ class CanvasPainter:
             x = int(radius * math.cos(math.radians(angle)))
             y = int(radius * math.sin(math.radians(angle)))
             self.setPixel(xPos+x,yPos+y)
-            angle += inc
+            angle += inc + (self._thikness/2)
 
     def loadRaw(self,xPos,yPos,width,height,rawBytes):
         self._flipV *= -1
