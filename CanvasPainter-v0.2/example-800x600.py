@@ -8,7 +8,7 @@ def img800x600():
 
     start_time = time.time()
 
-    data = CanvasPainter(800,600,32)
+    data = CanvasPainter(800,600,24)
 
     data.setThikness(3)
 
@@ -28,7 +28,7 @@ def img800x600():
     data.setWindow(0,500,0,500)
     data.setColor(255,255,255)
     data.setColor(0,0,0,CanvasPainter.COLOR_FILL)
-    data.drawCircle(250,250,100,True)
+    data.drawCircle(250,250,200,True)
     data.restoreColor(True)
 
     data.setColor(0,0,255)

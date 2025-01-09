@@ -293,27 +293,23 @@ class CanvasPainter:
  
 
     def drawCircle(self,xPos,yPos,radius,fill=False):
-        inc = 360/(radius*2*8)
+        len = 2*math.pi*radius
+        inc = 360/(len*math.pi)
         angle = 0
-        while angle <= 360:
+        while angle < 360:
             x = int(radius * math.cos(angle))
             y = int(radius * math.sin(angle))
-            
             if fill == True:
                 tmpColor = self._color
                 self._color = self._fillColor
                 self.setThikness(0)
-                n = 0
-                while n < radius:
+                for n in range(radius-self._thikness):
                     x = int(n * math.cos(angle))
                     y = int(n * math.sin(angle))
                     self.setPixel(xPos+x,yPos+y)
-                    n += 1
                 self.restoreThikness()
                 self._color = tmpColor
-            
-            self.setPixel(xPos+x,yPos+y)
-            
+            self.setPixel(xPos+x,yPos+y)      
             angle += inc
 
     def loadRaw(self,xPos,yPos,width,height,rawBytes):
@@ -326,9 +322,13 @@ class CanvasPainter:
                 if (xPos+c) > self._window._windowColumns: break
                 startOffset = self._getOffset(xPos+c,yPos+r)
                 startOffset = int(self._flipH*(startOffset[0]))+int(self._flipV*(startOffset[1]))
-                color =rawBytes[sRow + sCol:sRow+sCol+self._window._bytes]
-                if color != self._transparencyColor:
-                    self._window._windowBuffer[startOffset:startOffset+self._window._bytes] = color
+                if self._transparencyColor != None:
+                    color = rawBytes[sRow + sCol:sRow+sCol+self._window._bytes]
+                    if color != self._transparencyColor:
+                        self._window._windowBuffer[startOffset:startOffset+self._window._bytes] = color
+                else:
+                    for nByte in range(self._window._bytes):
+                        self._window._windowBuffer[startOffset+nByte] = rawBytes[sRow + sCol + nByte]
                 sCol += self._window._bytes
             sRow += width * self._window._bytes
         self._flipV *= -1
